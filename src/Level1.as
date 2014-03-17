@@ -18,6 +18,7 @@ package
 		private var floor:FlxTilemap;
 		private var alien:Alien;
 		private var spikes:FlxGroup;
+		private var goals:FlxGroup;
 		
 		public function Level1() 
 		{
@@ -39,6 +40,19 @@ package
 				floor.setTileByIndex(spikeTile, 0);
 			}
 			
+			//load the goal
+			goals = new FlxGroup();
+			var goalTiles:Array = floor.getTileInstances(5);
+			for (var j:int = 0; j < goalTiles.length; j++)
+			{
+				var goalTile:int = goalTiles[j];
+				var goal:GoalBlock = new GoalBlock();
+				goal.x = 20* (goalTile%floor.widthInTiles);
+				goal.y = 20* Math.floor(goalTile/floor.widthInTiles);
+				spikes.add(goal);
+				floor.setTileByIndex(goalTile, 0);
+			}
+			
 			alien = new Alien("Don't touch spine");
 			
 		}
@@ -54,6 +68,8 @@ package
 		{
 			super.update();
 			FlxG.collide(floor, player);
+			FlxG.collide(spikes, player);
+			FlxG.collide(goals, player);
 		}
 	}
 
