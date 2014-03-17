@@ -20,10 +20,12 @@ package
 			if (Key.LEFT && !Key.RIGHT)
 			{
 				acceleration.x = -120;
+				facing = LEFT;
 			}
 			else if (Key.RIGHT && !Key.LEFT)
 			{
 				acceleration.x = 120;
+				facing = RIGHT;
 			}
 			if (Key.JUMP && isTouching(FLOOR))
 			{

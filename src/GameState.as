@@ -14,18 +14,21 @@ package
 		
 		private var player:Player;
 		private var floor:FlxTilemap;
+		private var alien:Alien;
 		
 		public function GameState() 
 		{
 			player = new Player();
 			floor = new FlxTilemap();
-			floor.loadMap(new MAP_1(), TILEMAP,20,20);
+			floor.loadMap(new MAP_1(), TILEMAP, 20, 20);
+			alien = new Alien("Don't touch spine");
 		}
 		override public function create():void
 		{
 			FlxG.bgColor = 0xFFCCCCCC;
 			add(player);
 			add(floor);
+			add(alien);
 		}
 		override public function update():void
 		{
