@@ -56,8 +56,13 @@ package
 			super.update();
 			FlxG.collide(floor, player);
 			FlxG.collide(spikes, player, touchedSpikes);
-			FlxG.collide(goals, player);
+			FlxG.collide(goals, player, nextLevel);
 			killIfOffscreen();
+		}
+				
+		private function nextLevel(a:FlxObject, b:FlxObject):void
+		{
+			FlxG.switchState(new Level3());
 		}
 		
 		private function touchedSpikes(a:FlxObject, b:FlxObject):void
