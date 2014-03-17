@@ -1,9 +1,11 @@
 package  
 {
+	import org.flixel.FlxGroup;
 	import org.flixel.FlxState;
 	import org.flixel.FlxText;
 	import org.flixel.FlxG;
 	import org.flixel.FlxTilemap;
+	import org.flixel.system.FlxTile;
 	
 	public class Level1 extends FlxState
 	{
@@ -15,12 +17,28 @@ package
 		private var player:Player;
 		private var floor:FlxTilemap;
 		private var alien:Alien;
+		private var spikes:FlxGroup;
 		
 		public function Level1() 
 		{
 			player = new Player();
 			floor = new FlxTilemap();
 			floor.loadMap(new MAP_1(), TILEMAP, 20, 20);
+			
+			//load the spikes
+			spikes = new FlxGroup();
+			var spikeTiles:Array = floor.getTileInstances(4);
+			for (var i:int = 0; i < spikeTiles.length; i++)
+			{
+				var spikeTile:int = spikeTiles[i];
+				//it's an index. Figures...
+				var spike:Spike = new Spike();
+				spike.x = 20* (spikeTile%floor.widthInTiles);
+				spike.y = 20* Math.floor(spikeTile/floor.widthInTiles);
+				spikes.add(spike);
+				floor.setTileByIndex(spikeTile, 0);
+			}
+			
 			alien = new Alien("Don't touch spine");
 			
 		}
@@ -30,6 +48,7 @@ package
 			add(player);
 			add(floor);
 			add(alien);
+			add(spikes);
 		}
 		override public function update():void
 		{
