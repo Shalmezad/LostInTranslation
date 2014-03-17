@@ -9,6 +9,7 @@ package
 	import org.flixel.system.FlxTile;
 	public class Level extends FlxState
 	{
+
 		[Embed(source = "../res/tilemap.png")] public const TILEMAP:Class;
 		
 		public var player:Player;
@@ -29,10 +30,10 @@ package
 		override public function create():void
 		{
 			FlxG.bgColor = 0xFFCCCCCC;
+			add(floor);
 			add(spikes);
 			add(goals);
 			add(player);
-			add(floor);
 		}
 		
 		override public function update():void

@@ -10,6 +10,24 @@ package
 	
 	public class Level1 extends Level
 	{
+		/*
+			http://ackuna.com/badtranslator
+			From English: Avoid the spikes
+			To Bulgarian: Избягвайте шпайкове
+			Back to English: Avoid spikes
+			To Catalan: Evitar els pics
+			Back to English: Avoid spikes
+			To Chinese Simplified: 避免尖峰
+			Back to English: Avoid spikes
+			To Chinese Traditional: 避免尖峰
+			Back to English: Avoid spikes
+			To Czech: Vyhnout se hřeby
+			Back to English: Avoid spikes
+			To Danish: Undgå pigge
+			Back to English: Avoid spikes
+			To Dutch: Pieken voorkomen
+			Back to English: Peaks occur
+		 */
 		[Embed(source = "../res/map1.csv", mimeType="application/octet-stream")]
 		private const MAP_1:Class;
 	
@@ -17,7 +35,7 @@ package
 		{
 			super();
 			
-			alien = new Alien("Don't touch spine");
+			alien = new Alien("Peaks occur");
 			
 		}
 		
@@ -37,8 +55,13 @@ package
 			super.update();
 			FlxG.collide(floor, player);
 			FlxG.collide(spikes, player, touchedSpikes);
-			FlxG.collide(goals, player);
+			FlxG.collide(goals, player, nextLevel);
 			killIfOffscreen();
+		}
+		
+		private function nextLevel(a:FlxObject, b:FlxObject):void
+		{
+			FlxG.switchState(new Level2());
 		}
 		
 		private function touchedSpikes(a:FlxObject, b:FlxObject):void
