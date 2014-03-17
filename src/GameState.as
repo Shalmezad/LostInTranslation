@@ -3,18 +3,34 @@ package
 	import org.flixel.FlxState;
 	import org.flixel.FlxText;
 	import org.flixel.FlxG;
+	import org.flixel.FlxTilemap;
 	
 	public class GameState extends FlxState
 	{
-		var player:Player;
+		[Embed(source = "../res/map1.csv", mimeType="application/octet-stream")]
+		private const MAP_1:Class;
+		
+		[Embed(source = "../res/tilemap.png")] private const TILEMAP:Class;
+		
+		private var player:Player;
+		private var floor:FlxTilemap;
+		
 		public function GameState() 
 		{
 			player = new Player();
+			floor = new FlxTilemap();
+			floor.loadMap(new MAP_1(), TILEMAP,20,20);
 		}
 		override public function create():void
 		{
 			FlxG.bgColor = 0xFFCCCCCC;
 			add(player);
+			add(floor);
+		}
+		override public function update():void
+		{
+			super.update();
+			FlxG.collide(floor, player);
 		}
 	}
 
