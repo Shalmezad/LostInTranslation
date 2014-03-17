@@ -1,26 +1,14 @@
 package 
 {
-	import flash.display.Sprite;
-	import flash.events.Event;
-	
-	/**
-	 * ...
-	 * @author Shalmezad
-	 */
-	public class Main extends Sprite 
+	import org.flixel.*;
+	public class Main extends FlxGame 
 	{
 		
 		public function Main():void 
 		{
-			if (stage) init();
-			else addEventListener(Event.ADDED_TO_STAGE, init);
+			super(320, 240, GameState, 2);
 		}
 		
-		private function init(e:Event = null):void 
-		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-			// entry point
-		}
 		
 	}
 	
