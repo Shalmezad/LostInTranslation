@@ -101,9 +101,12 @@ package
 			}
 		}
 		
-		public function reachedGoal():void
+		public function makeGoalsInvisible():void
 		{
-			
+			for (var i:int = 0; i < goals.length; i++)
+			{
+				(goals.members[i] as GoalBlock).hide();
+			}
 		}
 	}
 

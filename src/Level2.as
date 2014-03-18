@@ -48,7 +48,7 @@ package
 		override public function create():void
 		{
 			super.create();
-			goals.visible = false;
+			makeGoalsInvisible();
 			add(alien);
 		}
 		override public function update():void

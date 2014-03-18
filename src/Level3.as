@@ -12,49 +12,50 @@ package
 	{
 		/*
 			http://ackuna.com/badtranslator
-			From English: Avoid the spikes
-			To Bulgarian: Избягвайте шпайкове
-			Back to English: Avoid spikes
-			To Catalan: Evitar els pics
-			Back to English: Avoid spikes
-			To Chinese Simplified: 避免尖峰
-			Back to English: Avoid spikes
-			To Chinese Traditional: 避免尖峰
-			Back to English: Avoid spikes
-			To Czech: Vyhnout se hřeby
-			Back to English: Avoid spikes
-			To Danish: Undgå pigge
-			Back to English: Avoid spikes
-			To Dutch: Pieken voorkomen
-			Back to English: Peaks occur
+			From English: Spikes are fake
+			To Bulgarian: Шиповете са фалшиви
+			Back to English: The spikes are false
+			To Catalan: Les pues són falses
+			Back to English: The spikes are false
+			To Chinese Simplified: 在峰值都是假
+			Back to English: Peak is fake
+			To Chinese Traditional: 高峰是假
+			Back to English: Peak is a fake
+			To Czech: Vrchol je podvod
+			Back to English: The top is a scam
+			To Danish: Toppen er et fupnummer
+			Back to English: The top is a scam
+			To Dutch: De top is een scam
+			Back to English: The top is a scam
 		 */
-		[Embed(source = "../res/map1.csv", mimeType="application/octet-stream")]
-		private const MAP_1:Class;
+		[Embed(source = "../res/map3.csv", mimeType="application/octet-stream")]
+		private const MAP_3:Class;
 	
 		public function Level3() 
 		{
 			super();
 			
-			alien = new Alien("Peaks occur");
+			alien = new Alien("The top is a scam");
 			
 		}
 		
 		override public function loadMap():void
 		{
 			floor = new FlxTilemap();
-			floor.loadMap(new MAP_1(), TILEMAP, 20, 20);
+			floor.loadMap(new MAP_3(), TILEMAP, 20, 20);
 		}
 		
 		override public function create():void
 		{
 			super.create();
+			makeGoalsInvisible();
 			add(alien);
 		}
 		override public function update():void
 		{
 			super.update();
 			FlxG.collide(floor, player);
-			FlxG.collide(spikes, player, touchedSpikes);
+			//FlxG.collide(spikes, player, touchedSpikes);
 			FlxG.collide(goals, player, nextLevel);
 			killIfOffscreen();
 		}
